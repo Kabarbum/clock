@@ -1,52 +1,58 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 
 const Timer = () => {
-    const [hours, setHours] = useState(new Date().getHours())
-    const [minutes, setMinutes] = useState(new Date().getMinutes())
     const [seconds, setSeconds] = useState(new Date().getSeconds())
-    const timerRef = useRef()
+    const [minutes, setMinutes] = useState(new Date().getMinutes())
+    const [hours, setHours] = useState(new Date().getHours())
 
-    const incHours = ()=>{
-        console.log('hours: '+hours)
-        if(hours===24)
+    const timerRef = useRef()
+    const secondsRef = useRef()
+    const minutesRef = useRef()
+    const hoursRef = useRef()
+
+    const incHours = useCallback(() => {
+        if (hoursRef.current === 23)
             setHours(0)
         else
-            setHours(prev=>prev+1)
-    }
-    const incMinutes = ()=>{
-        console.log('minutes:'+minutes)
+            setHours(hoursRef.current + 1)
+        console.log('hours: ' + hoursRef.current)
+    },[])
+    const incMinutes = useCallback(() => {
 
-        if(minutes===60)
+        if (minutesRef.current === 59) {
             setMinutes(0)
-        else
-            setMinutes(prev=>prev+1)
-
-        if(seconds === 60){
             incHours()
         }
-    }
-    const incSeconds = ()=>{
-        console.log('seconds:'+seconds)
-        if(seconds===60)
-            setSeconds(0)
         else
-            setSeconds(prev=>prev+1)
-        if(seconds === 60){
+            setMinutes(minutesRef.current + 1)
+        console.log('minutes:' + minutesRef.current)
+    },[])
+    const incSeconds = useCallback(() => {
+        if (secondsRef.current === 59) {
+            setSeconds(0)
             incMinutes()
         }
+        else
+            setSeconds(secondsRef.current + 1)
+        console.log('seconds:' + secondsRef.current)
+    }, [])
+
+    const startClock = () => {
+        incSeconds()
     }
-    const incTime = () => {
-        incSeconds(prev => prev + 1)
-    }
-    useEffect(()=>{
+
+    secondsRef.current = seconds
+    minutesRef.current = minutes
+    hoursRef.current = hours
+
+    useEffect(() => {
         clearInterval(timerRef.current)
-        console.log(hours)
         start()
-    },[])
+    }, [])
 
     const start = async () => {
         console.log('start')
-        timerRef.current = setInterval(incTime,1000)
+        timerRef.current = setInterval(startClock, 1000)
     }
 
     const stop = () => {
@@ -55,7 +61,7 @@ const Timer = () => {
     }
 
     return (
-        <div className='container'>
+        <div className='container' >
             <div className="timer">
                 <button onClick={start}>START</button>
                 <button onClick={stop}>STOP</button>
