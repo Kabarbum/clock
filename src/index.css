@@ -7,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #333;
 }
 
 code {
@@ -15,9 +16,7 @@ code {
 }
 
 .container{
-  width: 900px;
   height: 100vh;
-  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,4 +35,81 @@ code {
   border: 5px solid #fff;
   border-radius: 50%;
   color: #333;
+}
+.clock-wrapper{
+  top: 20px;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: #ffd0e4;
+  padding: 20px;
+}
+.clock{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+  border: 4px solid #000;
+  border-radius: 50%;
+}
+.clock-arrow{
+  background-color: #ffd138;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  transform-origin: left;
+
+}
+.hours-arrow{
+  width: 45px;
+}
+.min-arrow{
+  width: 70px;
+}
+.sec-arrow{
+  width: 70px;
+  height: 1px;
+}
+.t-word{
+  position: absolute;
+  --offset: 16px;
+  color: #fff;
+}
+.t15{
+  top: 50%;
+  right: var(--offset);
+  transform: translateY(-50%);
+}
+.t30{
+  bottom: var(--offset);
+  right: 50%;
+  transform: translateX(50%);
+}
+.t45{
+  top: 50%;
+  left: var(--offset);
+  transform: translateY(-50%);
+}
+.t60{
+  top: var(--offset);
+  right: 50%;
+  transform: translateX(50%);
+}
+.clock-line{
+  height: 1px;
+  width: 97px;
+  position: absolute;
+  top: 23%;
+  right: 49.5%;
+  transform: rotate(0deg);
+  transform-origin: right;
+}
+.clock-line::after{
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 1px;
+  background-color: #fff;
 }
