@@ -131,6 +131,7 @@ const Timer = () => {
     }
 
     return (
+      <>
         <div className="container">
 
             <div className="clock-wrapper">
@@ -182,6 +183,13 @@ const Timer = () => {
             </section>
 
         </div>
+          <div>
+              <input type="text"/>text
+              <input type="search"/>search
+              
+              <input type="text" inputMode='search'/>inputModesearch
+          </div>
+          </>
     );
 };
 
