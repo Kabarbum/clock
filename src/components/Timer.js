@@ -187,7 +187,7 @@ const Timer = () => {
               <input type="text"/>text
               <input type="search"/>search
               
-              <input type="search" inputMode='search'/>inputModesearch
+              <input type="search" inputMode='search'/>inputModesearch1
           </div>
           </>
     );
