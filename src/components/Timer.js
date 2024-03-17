@@ -130,58 +130,97 @@ const Timer = () => {
                 setSeconds(p=>p+1)
     }
 
+    const searchRef= useRef(null)
+    useEffect(() => {
+        const func = () => {
+            alert(1)
+        }
+        searchRef.current.addEventListener('search', func)
+        return () => {
+            searchRef.current.removeEventListener('search', func)
+        }
+    }, [])
+    const nativeShareHandler = () => {
+        try {
+            void navigator.share({
+                title: 'Квитанция об оплате',
+                url: 'https://gorod-gate.is74.ru/ticket/view?packId=11960737%26uncId=1948211481%26hash=9394a249afbe07c5baeddad47db85a11'
+            })
+        } catch (e) {
+            alert('share api not supported')
+        }
+    }
     return (
+      <div>
         <div className="container">
-
-            <div className="clock-wrapper">
-                <div className="clock">
-                <span style={{transform: `rotate(${hours % 24 * 15 - 90}deg)`}}
-                      className="hours-arrow clock-arrow"/>
-                    <span style={{transform: `rotate(${minutes % 60 * 6 - 90}deg)`}}
-                          className="min-arrow clock-arrow"/>
-                    <span style={{transform: `rotate(${seconds % 60 * 6 - 90}deg)`}}
-                          className="sec-arrow clock-arrow"/>
-                    <div className="t15 t-word">15</div>
-                    <div className="t30 t-word">30</div>
-                    <div className="t45 t-word">45</div>
-                    <div className="t60 t-word">60</div>
-                    {arr()}
-                </div>
-            </div>
-            <section>
-                <div className="numbers">
-                    <div
-                        className="number-hours number"
-                        onWheel={e=>hoursHandler(e)}
-                    >
-                        {hours > 9 ? hours : `0${hours}`}
-                        <span onClick={e=>hoursHandler(e, "top")}>▲</span>
-                        <span onClick={e=>hoursHandler(e, "down")}>▼</span>
-                    </div>
-                    <div
-                        className="number-minutes number"
-                        onWheel={e=>minutesHandler(e)}
-                    >
-                        {minutes > 9 ? minutes : `0${minutes}`}
-                        <span onClick={e=>minutesHandler(e, "top")}>▲</span>
-                        <span onClick={e=>minutesHandler(e, "down")}>▼</span>
-                    </div>
-                    <div
-                        className="number-seconds number"
-                        onWheel={e=>secondsHandler(e)}
-                    >
-                        {seconds > 9 ? seconds : `0${seconds}`}
-                        <span onClick={e=>secondsHandler(e, "top")}>▲</span>
-                        <span onClick={e=>secondsHandler(e, "down")}>▼</span>
-                    </div>
-                </div>
-                <div className="btns">
-                    <button onClick={start}>start</button>
-                    <button onClick={stop}>stop</button>
-                </div>
-            </section>
-
+            
+            {/*<div className="clock-wrapper">*/}
+            {/*    <div className="clock">*/}
+            {/*    <span style={{transform: `rotate(${hours % 24 * 15 - 90}deg)`}}*/}
+            {/*          className="hours-arrow clock-arrow"/>*/}
+            {/*        <span style={{transform: `rotate(${minutes % 60 * 6 - 90}deg)`}}*/}
+            {/*              className="min-arrow clock-arrow"/>*/}
+            {/*        <span style={{transform: `rotate(${seconds % 60 * 6 - 90}deg)`}}*/}
+            {/*              className="sec-arrow clock-arrow"/>*/}
+            {/*        <div className="t15 t-word">15</div>*/}
+            {/*        <div className="t30 t-word">30</div>*/}
+            {/*        <div className="t45 t-word">45</div>*/}
+            {/*        <div className="t60 t-word">60</div>*/}
+            {/*        {arr()}*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<section>*/}
+            {/*    <div className="numbers">*/}
+            {/*        <div*/}
+            {/*            className="number-hours number"*/}
+            {/*            onWheel={e=>hoursHandler(e)}*/}
+            {/*        >*/}
+            {/*            {hours > 9 ? hours : `0${hours}`}*/}
+            {/*            <span onClick={e=>hoursHandler(e, "top")}>▲</span>*/}
+            {/*            <span onClick={e=>hoursHandler(e, "down")}>▼</span>*/}
+            {/*        </div>*/}
+            {/*        <div*/}
+            {/*            className="number-minutes number"*/}
+            {/*            onWheel={e=>minutesHandler(e)}*/}
+            {/*        >*/}
+            {/*            {minutes > 9 ? minutes : `0${minutes}`}*/}
+            {/*            <span onClick={e=>minutesHandler(e, "top")}>▲</span>*/}
+            {/*            <span onClick={e=>minutesHandler(e, "down")}>▼</span>*/}
+            {/*        </div>*/}
+            {/*        <div*/}
+            {/*            className="number-seconds number"*/}
+            {/*            onWheel={e=>secondsHandler(e)}*/}
+            {/*        >*/}
+            {/*            {seconds > 9 ? seconds : `0${seconds}`}*/}
+            {/*            <span onClick={e=>secondsHandler(e, "top")}>▲</span>*/}
+            {/*            <span onClick={e=>secondsHandler(e, "down")}>▼</span>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*    <div className="btns">*/}
+            {/*        <button onClick={start}>start</button>*/}
+            {/*        <button onClick={stop}>stop</button>*/}
+            {/*    </div>*/}
+            {/*</section>*/}
+            
+            <a href="viber://forward?text=https://gorod-gate.is74.ru/ticket/view?packId=11960737%26uncId=1948211481%26hash=9394a249afbe07c5baeddad47db85a11"> SHARE LINK TO VIBER </a>
+            <a href="whatsapp://send?text=https://gorod-gate.is74.ru/ticket/view?packId=11960737%26uncId=1948211481%26hash=9394a249afbe07c5baeddad47db85a11"> SHARE LINK TO WHATSAPP </a>
+            <a href="https://connect.ok.ru/offer?title=Квитанция об оплате&description=description&url=https://gorod-gate.is74.ru/ticket/view?packId=11960737%26uncId=1948211481%26hash=9394a249afbe07c5baeddad47db85a11"> SHARE LINK TO odnklassini </a>
+            <div onClick={async () => { await navigator.clipboard.writeText('https://gorod-gate.is74.ru/ticket/view?packId=11960737%26uncId=1948211481%26hash=9394a249afbe07c5baeddad47db85a11') }}> скопировать в буфер</div>
+            <div onClick={nativeShareHandler}>navigator.share() |{navigator.canShare({
+                title: "title",
+                url: "https://gorod-gate.is74.ru/ticket/view?packId=11960737%26uncId=1948211481%26hash=9394a249afbe07c5baeddad47db85a11"
+            }) ? 1 : 0}|</div>
         </div>
+          <div>
+              <input ref={searchRef} type="search"/>search
+          </div>
+          <a href={'isapp://lk?screen=OrderingСardWeb'}>Заказать карту Челябинсвестбанка</a>
+          <a href="tel:+79195899121">+79195899121</a>
+          
+          {/*<div className="orderPage">*/}
+          {/*    <input inputMode="numeric"/>*/}
+          {/*</div>*/}
+          </div>
     );
 };
 
