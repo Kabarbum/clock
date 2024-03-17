@@ -1,15 +1,17 @@
 import Timer from "./components/Timer";
+import Main from "./components/Main";
+import Navbar from "./components/Navbar";
+import {Route, Routes} from "react-router-dom";
 
 
 function App() {
   return (
     <div className="App">
-        <header>
-            <div className="header--item">Timer</div>
-            <div className="header--item">Stopwatch</div>
-        </header>
-        <Timer/>
-
+      <Navbar/>
+      <Routes>
+        <Route element={<Main/>} path={'/'}/>
+        <Route element={<Timer/>} path={'/timer'}/>
+      </Routes>
     </div>
   );
 }
