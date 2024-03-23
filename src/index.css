@@ -37,14 +37,41 @@ header{
   justify-content: center;
   color: #222222;
 }
-
-.list-item {
-  width: 300px;
-  padding: 10px 18px;
-  font-size: 2rem;
-  border: 1px solid #f35baf;
+/*-------------------------------------list-------------------------------------*/
+.list {
+  width: calc(100vw - 40px);
+  height: calc(100vh - 200px);
+  border: 1px solid #ffeca7;
+  list-style-type: none;
+  overflow: auto;
 }
 
+.list-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.list-item-draggable {
+  width: 100%;
+  padding: 10px 18px;
+  font-size: 2rem;
+  background: #3cc;
+  z-index: 1;
+  flex-grow: 1;
+}
+
+.list-item-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  height: 100%;
+  padding: 0 20px;
+  align-items: center;
+  background-color: #f44;
+}
+/*-------------------------------------clock-------------------------------------*/
 .clock-wrapper{
   width: 200px;
   height: 200px;
